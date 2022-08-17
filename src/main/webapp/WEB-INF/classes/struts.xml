@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts
+Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <package name="Base"
+             extends="struts-default,json-default">
+        <global-results>
+
+            <result name="error" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">responseCode, message, errorData, stackTrace</param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+
+            <result name="success" type="json">
+                <!-- <param name="excludeNullProperties">true</param> -->
+                <param name="ignoreHierarchy">false</param>
+                <param name="excludeProperties">responseCode, result1,name</param>
+            </result>
+        </global-results>
+    </package>
+
+    <package name="default"  namespace="/" extends="Base">
+
+        <action name="json"  class="com.Actions.FormAction" method="one">
+
+              <result name="success" type="json">
+              </result>
+        </action>
+
+    </package>
+</struts>
